@@ -6,4 +6,9 @@ class MapPosition {
     required this.x,
     required this.y,
   });
+
+  @override
+  String toString() {
+    return 'MapPosition(x: $x, y: $y)';
+  }
 }

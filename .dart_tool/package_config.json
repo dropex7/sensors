@@ -68,6 +68,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_barometer",
+      "rootUri": "file:///Users/daniildmitriev/.pub-cache/hosted/pub.dev/flutter_barometer-0.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_bloc",
       "rootUri": "file:///Users/daniildmitriev/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.2",
       "packageUri": "lib/",
@@ -90,6 +96,12 @@
       "rootUri": "file:///Users/daniildmitriev/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "get",
+      "rootUri": "file:///Users/daniildmitriev/.pub-cache/hosted/pub.dev/get-4.6.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
     },
     {
       "name": "http_parser",
@@ -224,7 +236,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-27T15:25:38.017137Z",
+  "generated": "2023-04-27T16:05:07.648144Z",
   "generator": "pub",
   "generatorVersion": "2.19.3"
 }
