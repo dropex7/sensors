@@ -7,6 +7,14 @@ void main() {
   runApp(const MyApp());
 }
 
+class SensorData {
+  final double x;
+  final double y;
+  final double z;
+
+  SensorData(this.x, this.y, this.z);
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -35,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<double>? _userAccelerometerValues;
   List<double>? _accelerometerValues;
   List<double>? _gyroscopeValues;
-  List<double>? _magnetometerValues;
+  SensorData? _magnetometerValues;
   final _streamSubscriptions = <StreamSubscription<dynamic>>[];
 
   @override
@@ -47,8 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
         _accelerometerValues?.map((double v) => v.toStringAsFixed(1)).toList();
     final gyroscope =
         _gyroscopeValues?.map((double v) => v.toStringAsFixed(1)).toList();
-    final magnetometer =
-        _magnetometerValues?.map((double v) => v.toStringAsFixed(1)).toList();
+    final magnetometerTotal = (_magnetometerValues?.x ?? 0) +
+        (_magnetometerValues?.y ?? 0) +
+        (_magnetometerValues?.z ?? 0);
 
     return Scaffold(
       appBar: AppBar(
@@ -89,7 +98,31 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Magnetometer: $magnetometer'),
+                Expanded(
+                  child: Text(
+                      'Magnetometer (x: ${_magnetometerValues?.x.toStringAsFixed(1)}, y: ${_magnetometerValues?.y.toStringAsFixed(1)}, z: ${_magnetometerValues?.z.toStringAsFixed(1)})'),
+                ),
+                Expanded(
+                  child: Text('Magnetometer total: $magnetometerTotal'),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  onPressed: () {},
+                  child: const Text('Get location'),
+                ),
               ],
             ),
           ),
@@ -140,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
       magnetometerEvents.listen(
         (MagnetometerEvent event) {
           setState(() {
-            _magnetometerValues = <double>[event.x, event.y, event.z];
+            _magnetometerValues = SensorData(event.x, event.y, event.z);
           });
         },
       ),
